@@ -17,7 +17,7 @@ val junitVersion = "5.12.1"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(25)
+        languageVersion = JavaLanguageVersion.of(23)
     }
 }
 
@@ -27,7 +27,7 @@ tasks.withType<JavaCompile> {
 
 application {
     mainModule.set("org.example.pcbuilderapplication")
-    mainClass.set("org.example.pcbuilderapplication.HelloApplication")
+    mainClass.set("org.example.pcbuilderapplication.MainApplication")
 }
 
 javafx {

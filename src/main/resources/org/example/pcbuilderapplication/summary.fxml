@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="12.0"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.pcbuilderapplication.controllers.SummaryController"
+      prefHeight="400.0" prefWidth="600.0">
+
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+
+    <children>
+        <Label text="Build Summary"/>
+
+        <Label fx:id="cpuLabel" text="CPU: "/>
+        <Label fx:id="gpuLabel" text="GPU: "/>
+        <Label fx:id="ramLabel" text="RAM: "/>
+        <Label fx:id="storageLabel" text="Storage: "/>
+
+        <Button text="Back to Catalog" onAction="#goToCatalog"/>
+        <Button text="Home" onAction="#goHome"/>
+    </children>
+</VBox>
