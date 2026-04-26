@@ -1,0 +1,197 @@
+/*
+   PC Builder App — Login Screen
+*/
+
+.root-pane {
+    -fx-background-color: #0a0c10;
+    -fx-min-width: 800px;
+    -fx-min-height: 560px;
+}
+
+.accent-circle-tr {
+    -fx-background-color: radial-gradient(center 100% 0%, radius 50%, #00e5ff22, transparent);
+    -fx-min-width: 400px;
+    -fx-min-height: 400px;
+    -fx-translate-x: 180px;
+    -fx-translate-y: -160px;
+}
+
+.accent-circle-bl {
+    -fx-background-color: radial-gradient(center 0% 100%, radius 50%, #ff6b0022, transparent);
+    -fx-min-width: 350px;
+    -fx-min-height: 350px;
+    -fx-translate-x: -190px;
+    -fx-translate-y: 160px;
+}
+
+.login-card {
+    -fx-background-color: #111318;
+    -fx-border-color: #2a2d35;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 40, 0, 0, 8);
+    -fx-max-width: 420px;
+    -fx-min-width: 420px;
+}
+
+.brand-strip {
+    -fx-background-color: #0d0f14;
+    -fx-border-color: transparent transparent #1e2128 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 14 20 14 20;
+}
+
+.cpu-icon {
+    -fx-background-color: #00e5ff;
+    -fx-min-width: 18px;
+    -fx-min-height: 18px;
+    -fx-max-width: 18px;
+    -fx-max-height: 18px;
+    -fx-border-color: #00e5ff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-effect: dropshadow(gaussian, #00e5ff88, 8, 0, 0, 0);
+}
+
+.brand-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.version-label {
+    -fx-text-fill: #3a3d45;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 11px;
+}
+
+.card-content {
+    -fx-padding: 36 40 32 40;
+}
+
+.headline {
+    -fx-text-fill: #f0f2f5;
+    -fx-font-family: "Georgia";
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.subheadline {
+    -fx-text-fill: #555a66;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 12px;
+}
+
+.divider {
+    -fx-background-color: linear-gradient(to right, transparent, #2a2d35, transparent);
+    -fx-min-height: 1px;
+    -fx-max-height: 1px;
+    -fx-min-width: 320px;
+}
+
+.field-label {
+    -fx-text-fill: #00e5ff;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.input-field {
+    -fx-background-color: #0a0c10;
+    -fx-border-color: #2a2d35;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-text-fill: #e0e3ea;
+    -fx-prompt-text-fill: #333740;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 13px;
+    -fx-padding: 11 14 11 14;
+    -fx-pref-height: 42px;
+}
+
+.input-field:focused {
+    -fx-border-color: #00e5ff;
+    -fx-effect: dropshadow(gaussian, #00e5ff33, 10, 0, 0, 0);
+    -fx-background-color: #0d1015;
+}
+
+.forgot-label {
+    -fx-text-fill: #3a3d45;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 11px;
+    -fx-cursor: hand;
+}
+
+.forgot-label:hover {
+    -fx-text-fill: #00e5ff;
+}
+
+.login-btn {
+    -fx-background-color: #00e5ff;
+    -fx-text-fill: #0a0c10;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-padding: 14 0 14 0;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #00e5ff55, 12, 0, 0, 2);
+}
+
+.login-btn:hover {
+    -fx-background-color: #33eaff;
+    -fx-effect: dropshadow(gaussian, #00e5ff99, 20, 0, 0, 2);
+    -fx-scale-x: 1.01;
+    -fx-scale-y: 1.01;
+}
+
+.login-btn:pressed {
+    -fx-background-color: #00bcd4;
+    -fx-scale-x: 0.99;
+    -fx-scale-y: 0.99;
+}
+
+.register-prompt {
+    -fx-text-fill: #3a3d45;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 12px;
+}
+
+.register-link {
+    -fx-text-fill: #00e5ff;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+
+.register-link:hover {
+    -fx-underline: true;
+}
+
+.status-bar {
+    -fx-background-color: #0d0f14;
+    -fx-border-color: #1e2128 transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 10 20 10 20;
+}
+
+.status-dot {
+    -fx-background-color: #00ff88;
+    -fx-min-width: 7px;
+    -fx-min-height: 7px;
+    -fx-max-width: 7px;
+    -fx-max-height: 7px;
+    -fx-background-radius: 50%;
+    -fx-effect: dropshadow(gaussian, #00ff8899, 6, 0, 0, 0);
+}
+
+.status-text {
+    -fx-text-fill: #2a2d35;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 10px;
+}

@@ -38,11 +38,19 @@ javafx {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.12.1")
+    testImplementation("org.testfx:testfx-core:4.0.16-alpha")
+    testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    jvmArgs = listOf(
+        "--add-opens", "javafx.graphics/com.sun.javafx.application=ALL-UNNAMED",
+        "--add-reads", "org.example.pcbuilderapplication=ALL-UNNAMED"
+    )
 }
+
 
 jlink {
     imageZip.set(layout.buildDirectory.file("/distributions/app-${javafx.platform.classifier}.zip"))
