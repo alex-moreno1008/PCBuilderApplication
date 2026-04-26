@@ -5,4 +5,6 @@ module org.example.pcbuilderapplication {
 
     opens org.example.pcbuilderapplication to javafx.fxml;
     exports org.example.pcbuilderapplication;
+    exports org.example.pcbuilderapplication.controllers;
+    opens org.example.pcbuilderapplication.controllers to javafx.fxml;
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="15.0"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.pcbuilderapplication.controllers.HomeController"
+      prefHeight="400.0" prefWidth="600.0">
+
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+
+    <children>
+        <Label text="Welcome to PC Builder"/>
+        <Button text="Build a PC" onAction="#goToCatalog"/>
+        <Button text="Saved Builds" onAction="#goToSaved"/>
+        <Button text="Logout" onAction="#goToLogin"/>
+    </children>
+</VBox>
