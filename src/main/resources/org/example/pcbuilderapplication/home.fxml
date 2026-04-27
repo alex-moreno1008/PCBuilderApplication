@@ -1,24 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
 
-<VBox alignment="CENTER" spacing="15.0"
-      xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.pcbuilderapplication.controllers.HomeController"
-      prefHeight="400.0" prefWidth="600.0">
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.pcbuilderapplication.controllers.HomeController"
+           stylesheets="@login.css"
+           styleClass="root-pane">
 
-    <padding>
-        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
-    </padding>
+    <Pane styleClass="accent-circle-tr" mouseTransparent="true"/>
+    <Pane styleClass="accent-circle-bl" mouseTransparent="true"/>
 
-    <children>
-        <Label text="Welcome to PC Builder"/>
-        <Button text="Build a PC" onAction="#goToCatalog"/>
-        <Button text="Saved Builds" onAction="#goToSaved"/>
-        <Button text="Logout" onAction="#goToLogin"/>
-    </children>
-</VBox>
+    <VBox styleClass="login-card" alignment="CENTER" spacing="0">
+
+        <HBox styleClass="brand-strip" alignment="CENTER_LEFT" spacing="10">
+            <Pane styleClass="cpu-icon"/>
+            <Label text="PC BUILDER" styleClass="brand-label"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="v1.0" styleClass="version-label"/>
+        </HBox>
+
+        <VBox styleClass="card-content" alignment="CENTER" spacing="24">
+
+            <VBox alignment="CENTER" spacing="6">
+                <Label text="Home Page!" styleClass="headline"/>
+                <Label text="Select your option below..." styleClass="subheadline"/>
+            </VBox>
+
+            <Pane styleClass="divider"/>
+
+            <VBox spacing="14" maxWidth="320" prefWidth="320" alignment="CENTER">
+                <Button text="BUILD A PC"
+                        styleClass="login-btn"
+                        onAction="#goToCatalog"
+                        prefWidth="320"/>
+
+                <Button text="SAVED BUILDS"
+                        styleClass="login-btn"
+                        onAction="#goToSaved"
+                        prefWidth="320"/>
+
+                <Button text="LOGOUT"
+                        styleClass="login-btn"
+                        onAction="#goToLogin"
+                        prefWidth="320"/>
+            </VBox>
+
+        </VBox>
+
+        <HBox styleClass="status-bar" alignment="CENTER_LEFT" spacing="8">
+            <Pane styleClass="status-dot"/>
+            <Label text="System Ready" styleClass="status-text"/>
+        </HBox>
+
+    </VBox>
+
+</StackPane>
