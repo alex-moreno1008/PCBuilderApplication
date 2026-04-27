@@ -5,5 +5,6 @@ public enum SceneType {
     HOME,
     CATALOG,
     SUMMARY,
-    SAVED_BUILDS
+    SAVED_BUILDS,
+    SIGNUP
 }

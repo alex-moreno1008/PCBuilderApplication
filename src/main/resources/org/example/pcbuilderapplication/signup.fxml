@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="org.example.pcbuilderapplication.controllers.SignupController"
+  stylesheets="@login.css"
+  styleClass="root-pane">
+
+  <Pane styleClass="accent-circle-tr" mouseTransparent="true"/>
+  <Pane styleClass="accent-circle-bl" mouseTransparent="true"/>
+
+  <VBox styleClass="login-card" alignment="CENTER" spacing="0">
+
+
+    <HBox styleClass="brand-strip" alignment="CENTER_LEFT" spacing="10">
+      <Pane styleClass="cpu-icon"/>
+      <Label text="PC BUILDER" styleClass="brand-label"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label text="v1.0" styleClass="version-label"/>
+    </HBox>
+
+
+    <VBox styleClass="card-content" alignment="CENTER" spacing="24">
+
+      <VBox alignment="CENTER" spacing="6">
+        <Label text="Create Account" styleClass="headline"/>
+        <Label text="Join the PC Builder community" styleClass="subheadline"/>
+      </VBox>
+
+      <Pane styleClass="divider"/>
+
+      <VBox spacing="14" maxWidth="320" prefWidth="320">
+        <VBox spacing="6">
+          <Label text="USERNAME" styleClass="field-label"/>
+          <TextField fx:id="userField"
+            promptText="Enter your username"
+            styleClass="input-field"/>
+        </VBox>
+        <VBox spacing="6">
+          <Label text="PASSWORD" styleClass="field-label"/>
+          <PasswordField fx:id="passField"
+            promptText="Enter your password"
+            styleClass="input-field"/>
+        </VBox>
+        <VBox spacing="6">
+          <Label text="CONFIRM PASSWORD" styleClass="field-label"/>
+          <PasswordField fx:id="confirmPassField"
+            promptText="Confirm your password"
+            styleClass="input-field"/>
+        </VBox>
+        <Label fx:id="feedbackLabel"
+          text=""
+          wrapText="true"
+          styleClass="subheadline"/>
+      </VBox>
+
+      <Button text="SIGN UP" styleClass="login-btn"
+        onAction="#handleSignUp"
+        defaultButton="true"
+        prefWidth="320"/>
+
+      <HBox alignment="CENTER" spacing="6">
+        <Label text="Already have an account?" styleClass="register-prompt"/>
+        <Button text="Log in" styleClass="register-link" onAction="#handleGoToLogin"/>
+      </HBox>
+
+    </VBox>
+
+
+    <HBox styleClass="status-bar" alignment="CENTER_LEFT" spacing="8">
+      <Pane styleClass="status-dot"/>
+      <Label text="System Ready" styleClass="status-text"/>
+    </HBox>
+
+  </VBox>
+
+</StackPane>

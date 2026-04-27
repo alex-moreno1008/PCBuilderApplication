@@ -167,6 +167,8 @@
     -fx-font-family: "Courier New";
     -fx-font-size: 12px;
     -fx-cursor: hand;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
 
 .register-link:hover {
