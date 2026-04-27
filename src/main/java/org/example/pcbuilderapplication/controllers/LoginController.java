@@ -18,4 +18,9 @@ public class LoginController {
     private void handleLogin() {
         SceneManager.getInstance().navigateTo(SceneType.HOME);
     }
+
+    @FXML
+    private void handleGoToSignup() {
+        SceneManager.getInstance().navigateTo(SceneType.SIGNUP);
+    }
 }

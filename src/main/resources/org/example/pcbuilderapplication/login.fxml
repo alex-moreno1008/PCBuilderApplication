@@ -60,7 +60,7 @@
 
             <HBox alignment="CENTER" spacing="6">
                 <Label text="New here?" styleClass="register-prompt"/>
-                <Label text="Create an account" styleClass="register-link"/>
+                <Button text="Create an account" styleClass="register-link" onAction="#handleGoToSignup"/>
             </HBox>
 
         </VBox>
@@ -68,7 +68,7 @@
         <!-- Status bar -->
         <HBox styleClass="status-bar" alignment="CENTER_LEFT" spacing="8">
             <Pane styleClass="status-dot"/>
-            <Label text="System Ready" styleClass="status-text"/>
+            <Label text="System Ready" styleClass="status-text" />
         </HBox>
 
     </VBox>
