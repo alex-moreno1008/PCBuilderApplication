@@ -41,6 +41,8 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.12.1")
     testImplementation("org.testfx:testfx-core:4.0.16-alpha")
     testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
+    implementation("org.xerial:sqlite-jdbc:3.46.1.3")
+    implementation("org.slf4j:slf4j-simple:2.0.13")
 }
 
 tasks.withType<Test> {
@@ -59,3 +61,5 @@ jlink {
         name = "app"
     }
 }
+
+

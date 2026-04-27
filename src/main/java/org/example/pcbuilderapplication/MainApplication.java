@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) {
+        new DatabaseManager();
         SceneManager.init(stage);
         stage.setTitle("PC Builder Application");
         SceneManager.getInstance().navigateTo(SceneType.LOGIN);
