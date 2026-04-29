@@ -20,6 +20,7 @@
         <Label text="Select Your PC Parts"/>
 
         <ComboBox fx:id="cpuBox" promptText="Select CPU"/>
+        <ComboBox fx:id="motherboardBox" promptText="Select Motherboard"/>
         <ComboBox fx:id="gpuBox" promptText="Select GPU"/>
         <ComboBox fx:id="ramBox" promptText="Select RAM"/>
         <ComboBox fx:id="storageBox" promptText="Select Storage"/>
