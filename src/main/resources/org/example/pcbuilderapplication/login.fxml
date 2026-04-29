@@ -53,6 +53,11 @@
                 </HBox>
             </VBox>
 
+            <Label fx:id ="feedbackLabel"
+                    text=""
+                    wrapText="true"
+                    styleClass="subheadline"/>
+
             <Button text="SIGN IN" styleClass="login-btn"
                     onAction="#handleLogin"
                     defaultButton="true"
