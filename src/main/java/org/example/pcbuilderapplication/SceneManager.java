@@ -22,6 +22,9 @@ public class SceneManager {
         }
         return instance;
     }
+    public Stage getStage(){
+        return stage;
+    }
 
     public void navigateTo(SceneType type) {
         stage.setScene(SceneFactory.create(type));
