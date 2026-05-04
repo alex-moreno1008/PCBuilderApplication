@@ -43,6 +43,15 @@
             </VBox>
 
             <VBox spacing="14" alignment="CENTER" maxWidth="320" prefWidth="320">
+
+                <Button fx:id="fetchGpuBtn"
+                  text="Fetch GPUs from Web"
+                  onAction="#fetchGpusFromApi"
+                  prefWidth="320"
+                  styleClass="login-btn"/>
+
+                <Label fx:id="apiStatusLabel" text=""/>
+
                 <Button text="NEXT"
                         styleClass="login-btn"
                         onAction="#goToSummary"
