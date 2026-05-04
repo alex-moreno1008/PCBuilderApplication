@@ -36,6 +36,7 @@
 
             <VBox spacing="14" alignment="CENTER" maxWidth="320" prefWidth="320">
                 <ComboBox fx:id="cpuBox" promptText="Select CPU" prefWidth="320"/>
+                <ComboBox fx:id="motherboardBox" promptText="Select Motherboard" prefWidth="320"/>
                 <ComboBox fx:id="gpuBox" promptText="Select GPU" prefWidth="320"/>
                 <ComboBox fx:id="ramBox" promptText="Select RAM" prefWidth="320"/>
                 <ComboBox fx:id="storageBox" promptText="Select Storage" prefWidth="320"/>
