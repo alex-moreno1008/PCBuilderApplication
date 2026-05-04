@@ -14,9 +14,7 @@
 
     <VBox styleClass="login-card"
           alignment="CENTER"
-          spacing="0"
-          prefHeight="450.0"
-          prefWidth="600.0">
+          spacing="0">
 
         <HBox styleClass="brand-strip" alignment="CENTER_LEFT" spacing="10">
             <Pane styleClass="cpu-icon"/>
@@ -44,11 +42,13 @@
             </VBox>
 
             <VBox spacing="14" alignment="CENTER" maxWidth="320" prefWidth="320">
-                <Button text="Next"
+                <Button text="NEXT"
+                        styleClass="login-btn"
                         onAction="#goToSummary"
                         prefWidth="320"/>
 
-                <Button text="Back to Home"
+                <Button text="BACK HOME"
+                        styleClass="login-btn"
                         onAction="#goHome"
                         prefWidth="320"/>
             </VBox>

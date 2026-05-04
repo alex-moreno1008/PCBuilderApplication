@@ -199,5 +199,60 @@
 }
 
 .warning-text {
-    -fx-text-fill: red;
+    -fx-text-fill: #ff4d4d;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.combo-box {
+    -fx-background-color: #0a0c10;
+    -fx-border-color: #2a2d35;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-pref-height: 42px;
+}
+
+.combo-box:focused {
+    -fx-border-color: #00e5ff;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e0e3ea;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 13px;
+    -fx-padding: 10 14 10 14;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-background-color: #00e5ff;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #0a0c10;
+    -fx-border-color: #2a2d35;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: #0a0c10;
+    -fx-text-fill: #e0e3ea;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 13px;
+    -fx-padding: 10 14 10 14;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #111318;
+    -fx-text-fill: #00e5ff;
+}
+
+.combo-box-popup .list-cell:filled:selected {
+    -fx-background-color: #00e5ff;
+    -fx-text-fill: #0a0c10;
 }
