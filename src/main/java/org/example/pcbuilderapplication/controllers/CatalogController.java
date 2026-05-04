@@ -5,6 +5,7 @@ import javafx.scene.control.ComboBox;
 import org.example.pcbuilderapplication.DatabaseManager;
 import org.example.pcbuilderapplication.SceneManager;
 import org.example.pcbuilderapplication.SceneType;
+import org.example.pcbuilderapplication.models.BuildSelection;
 
 public class CatalogController {
 
@@ -16,6 +17,12 @@ public class CatalogController {
 
     @FXML
     private void goToSummary() {
+        BuildSelection.cpu = cpuBox.getValue();
+        BuildSelection.motherboard = motherboardBox.getValue();
+        BuildSelection.gpu = gpuBox.getValue();
+        BuildSelection.ram = ramBox.getValue();
+        BuildSelection.storage = storageBox.getValue();
+
         SceneManager.getInstance().navigateTo(SceneType.SUMMARY);
     }
 

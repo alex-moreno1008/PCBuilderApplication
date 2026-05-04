@@ -137,6 +137,23 @@ public class DatabaseManager {
         return parts;
     }
 
+    public double getPartPrice(String partName) {
+        String sql = "SELECT price FROM parts WHERE name = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, partName);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getDouble("price");
+            }
+        } catch (SQLException e) {
+            System.err.println("getPartPrice failed: " + e.getMessage());
+        }
+
+        return 0.0;
+    }
+
     public void insertUser(String username, String password) {
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
 
