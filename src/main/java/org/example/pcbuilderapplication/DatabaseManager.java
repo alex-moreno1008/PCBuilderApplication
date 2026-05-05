@@ -2,7 +2,9 @@ package org.example.pcbuilderapplication;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DatabaseManager {
 
@@ -252,14 +254,14 @@ public class DatabaseManager {
         }
     }
 
-    public List<String> getSavedBuildSummaries(int userId) {
-        List<String> results = new ArrayList<>();
-        String sql = "SELECT build_name, cpu, gpu, total_price FROM saved_builds WHERE user_id = ?";
+    public Map<Integer, String> getSavedBuildSummaries(int userId) {
+        Map<Integer, String> results = new LinkedHashMap<>();
+        String sql = "SELECT id, build_name, cpu, gpu, total_price FROM saved_builds WHERE user_id = ?";
         try (PreparedStatement p = connection.prepareStatement(sql)) {
             p.setInt(1, userId);
             ResultSet rs = p.executeQuery();
             while (rs.next()) {
-                results.add(String.format("[%s] CPU: %s | GPU: %s | $%.2f",
+                results.put(rs.getInt("id"), String.format("[%s] CPU: %s | GPU: %s | $%.2f",
                         rs.getString("build_name"),
                         rs.getString("cpu"),
                         rs.getString("gpu"),
@@ -282,5 +284,15 @@ public class DatabaseManager {
             System.err.println("getUserId failed: " + e.getMessage());
         }
         return -1;
+    }
+
+    public void deleteBuild(int buildId) {
+        String sql = "DELETE FROM saved_builds WHERE id = ?";
+        try (PreparedStatement p = connection.prepareStatement(sql)) {
+            p.setInt(1, buildId);
+            p.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("deleteBuild failed: " + e.getMessage());
+        }
     }
 }
