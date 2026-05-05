@@ -48,9 +48,6 @@
                                    promptText="Enter your password"
                                    styleClass="input-field"/>
                 </VBox>
-                <HBox alignment="CENTER_RIGHT">
-                    <Label text="Forgot password?" styleClass="forgot-label"/>
-                </HBox>
             </VBox>
 
             <Label fx:id ="feedbackLabel"
