@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import org.example.pcbuilderapplication.SceneManager;
 import org.example.pcbuilderapplication.SceneType;
+import org.example.pcbuilderapplication.models.BuildSelection;
 import org.example.pcbuilderapplication.models.UserService;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,24 @@ public class SavedBuildController {
                 loadBuilds();
             }
         });
+    }
+
+    @FXML
+    public void viewSelected() {
+        int index = savedBuildsList.getSelectionModel().getSelectedIndex();
+        if (index < 0 || buildsMap.isEmpty()) return;
+
+        int buildId = (int) buildsMap.keySet().toArray()[index];
+        BuildSelection build = new DatabaseManager().getBuildById(buildId);
+
+        if (build != null) {
+            BuildSelection.cpu = build.cpu;
+            BuildSelection.motherboard = build.motherboard;
+            BuildSelection.gpu = build.gpu;
+            BuildSelection.ram = build.ram;
+            BuildSelection.storage = build.storage;
+            SceneManager.getInstance().navigateTo(SceneType.SUMMARY);
+        }
     }
 
     @FXML

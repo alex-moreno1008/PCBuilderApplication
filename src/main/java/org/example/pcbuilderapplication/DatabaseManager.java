@@ -1,5 +1,7 @@
 package org.example.pcbuilderapplication;
 
+import org.example.pcbuilderapplication.models.BuildSelection;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -294,5 +296,25 @@ public class DatabaseManager {
         } catch (SQLException e) {
             System.err.println("deleteBuild failed: " + e.getMessage());
         }
+    }
+
+    public BuildSelection getBuildById(int buildId) {
+        String sql = "SELECT * FROM saved_builds WHERE id = ?";
+        try (PreparedStatement p = connection.prepareStatement(sql)) {
+            p.setInt(1, buildId);
+            ResultSet rs = p.executeQuery();
+            if (rs.next()) {
+                BuildSelection build = new BuildSelection();
+                build.cpu = rs.getString("cpu");
+                build.motherboard = rs.getString("motherboard");
+                build.gpu = rs.getString("gpu");
+                build.ram = rs.getString("ram");
+                build.storage = rs.getString("storage");
+                return build;
+            }
+        } catch (SQLException e) {
+            System.err.println("getBuildById failed: " + e.getMessage());
+        }
+        return null;
     }
 }

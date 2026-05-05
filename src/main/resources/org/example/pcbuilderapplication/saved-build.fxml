@@ -19,6 +19,10 @@
     <children>
         <Label text="Saved Builds"/>
         <ListView fx:id="savedBuildsList" prefHeight="200.0" prefWidth="300.0"/>
+        <Button text="VIEW SELECTED"
+                styleClass="login-btn"
+                onAction="#viewSelected"
+                prefWidth="300"/>
         <Button text="DELETE SELECTED"
                 styleClass="login-btn"
                 onAction="#deleteSelected"
