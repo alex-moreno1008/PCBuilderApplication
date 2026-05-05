@@ -61,7 +61,7 @@ public class UserServiceTest {
   }
 
   @Test
-  void testAccountExists_AfterRegister_ReturnsTrue() {
+  void accountExists_AfterRegister_ReturnsTrue() {
     String uniqueUser = "test_user_" + System.currentTimeMillis();
     userService.register(uniqueUser, "password123");
     assertTrue(userService.accountExists(uniqueUser, "password123"),
