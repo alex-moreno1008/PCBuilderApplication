@@ -41,9 +41,25 @@ public class DatabaseManager {
     );
     """;
 
+        String savedBuildsTable = """
+        CREATE TABLE IF NOT EXISTS saved_builds (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        build_name TEXT NOT NULL,
+        cpu TEXT,
+        motherboard TEXT,
+        gpu TEXT,
+        ram TEXT,
+        storage TEXT,
+        total_price REAL,
+        FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+    """;
+
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(usersTable);
             stmt.execute(partsTable);
+            stmt.execute(savedBuildsTable);
         } catch (SQLException e) {
             System.err.println("createTables failed: " + e.getMessage());
         }
