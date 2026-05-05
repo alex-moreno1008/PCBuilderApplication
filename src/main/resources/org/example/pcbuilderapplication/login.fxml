@@ -29,7 +29,7 @@
         <VBox styleClass="card-content" alignment="CENTER" spacing="24">
 
             <VBox alignment="CENTER" spacing="6">
-                <Label text="Welcome Back" styleClass="headline"/>
+                <Label text="Welcome" styleClass="headline"/>
                 <Label text="Sign in to your builder account" styleClass="subheadline"/>
             </VBox>
 

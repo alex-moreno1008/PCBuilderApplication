@@ -42,6 +42,18 @@
                 <Pane styleClass="divider"/>
 
                 <Label fx:id="totalLabel" text="Total: $0" styleClass="headline"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="budgetField"
+                               promptText="Enter your budget"
+                               styleClass="input-field"
+                               prefWidth="200"/>
+                    <Button text="CHECK"
+                            styleClass="login-btn"
+                            onAction="#checkBudget"
+                            prefWidth="90"/>
+                </HBox>
+
+                <Label fx:id="budgetLabel" text="" styleClass="subheadline" wrapText="true"/>
             </VBox>
 
             <VBox spacing="14" alignment="CENTER" maxWidth="320" prefWidth="320">
