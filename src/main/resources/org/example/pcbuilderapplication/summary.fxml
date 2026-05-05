@@ -50,6 +50,11 @@
                         onAction="#goToCatalog"
                         prefWidth="320"/>
 
+                <Button text="SAVE BUILD"
+                        styleClass="login-btn"
+                        onAction="#saveBuild"
+                        prefWidth="320"/>
+
                 <Button text="HOME"
                         styleClass="login-btn"
                         onAction="#goHome"

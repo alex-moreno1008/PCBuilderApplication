@@ -15,7 +15,7 @@ public class SceneFactory {
             case HOME -> loadScene("/org/example/pcbuilderapplication/home.fxml");
             case CATALOG -> loadScene("/org/example/pcbuilderapplication/catalog.fxml");
             case SUMMARY -> loadScene("/org/example/pcbuilderapplication/summary.fxml");
-            case SAVED_BUILDS -> loadScene("/org/example/pcbuilderapplication/saved-builds.fxml");
+            case SAVED_BUILDS -> loadScene("/org/example/pcbuilderapplication/saved-build.fxml");
             case SIGNUP -> loadScene("/org/example/pcbuilderapplication/signup.fxml");
         };
     }

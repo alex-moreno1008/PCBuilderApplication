@@ -1,8 +1,12 @@
 package org.example.pcbuilderapplication;
 
+import org.example.pcbuilderapplication.models.BuildSelection;
+
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DatabaseManager {
 
@@ -41,9 +45,25 @@ public class DatabaseManager {
     );
     """;
 
+        String savedBuildsTable = """
+        CREATE TABLE IF NOT EXISTS saved_builds (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        build_name TEXT NOT NULL,
+        cpu TEXT,
+        motherboard TEXT,
+        gpu TEXT,
+        ram TEXT,
+        storage TEXT,
+        total_price REAL,
+        FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+    """;
+
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(usersTable);
             stmt.execute(partsTable);
+            stmt.execute(savedBuildsTable);
         } catch (SQLException e) {
             System.err.println("createTables failed: " + e.getMessage());
         }
@@ -215,6 +235,86 @@ public class DatabaseManager {
             System.err.println("getRamTypeByPartName failed: " + e.getMessage());
         }
 
+        return null;
+    }
+
+    public void saveBuild(int userId, String buildName, String cpu, String motherboard,
+                          String gpu, String ram, String storage, double total) {
+        String sql = "INSERT INTO saved_builds (user_id, build_name, cpu, motherboard, gpu, ram, storage, total_price) VALUES (?,?,?,?,?,?,?,?)";
+        try (PreparedStatement p = connection.prepareStatement(sql)) {
+            p.setInt(1, userId);
+            p.setString(2, buildName);
+            p.setString(3, cpu);
+            p.setString(4, motherboard);
+            p.setString(5, gpu);
+            p.setString(6, ram);
+            p.setString(7, storage);
+            p.setDouble(8, total);
+            p.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("saveBuild failed: " + e.getMessage());
+        }
+    }
+
+    public Map<Integer, String> getSavedBuildSummaries(int userId) {
+        Map<Integer, String> results = new LinkedHashMap<>();
+        String sql = "SELECT id, build_name, cpu, gpu, total_price FROM saved_builds WHERE user_id = ?";
+        try (PreparedStatement p = connection.prepareStatement(sql)) {
+            p.setInt(1, userId);
+            ResultSet rs = p.executeQuery();
+            while (rs.next()) {
+                results.put(rs.getInt("id"), String.format("[%s] CPU: %s | GPU: %s | $%.2f",
+                        rs.getString("build_name"),
+                        rs.getString("cpu"),
+                        rs.getString("gpu"),
+                        rs.getDouble("total_price")));
+            }
+        } catch (SQLException e) {
+            System.err.println("getSavedBuildSummaries failed: " + e.getMessage());
+        }
+        return results;
+    }
+
+    public int getUserId(String username, String password) {
+        String sql = "SELECT id FROM users WHERE username = ? AND password = ?";
+        try (PreparedStatement p = connection.prepareStatement(sql)) {
+            p.setString(1, username);
+            p.setString(2, password);
+            ResultSet rs = p.executeQuery();
+            if (rs.next()) return rs.getInt("id");
+        } catch (SQLException e) {
+            System.err.println("getUserId failed: " + e.getMessage());
+        }
+        return -1;
+    }
+
+    public void deleteBuild(int buildId) {
+        String sql = "DELETE FROM saved_builds WHERE id = ?";
+        try (PreparedStatement p = connection.prepareStatement(sql)) {
+            p.setInt(1, buildId);
+            p.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("deleteBuild failed: " + e.getMessage());
+        }
+    }
+
+    public BuildSelection getBuildById(int buildId) {
+        String sql = "SELECT * FROM saved_builds WHERE id = ?";
+        try (PreparedStatement p = connection.prepareStatement(sql)) {
+            p.setInt(1, buildId);
+            ResultSet rs = p.executeQuery();
+            if (rs.next()) {
+                BuildSelection build = new BuildSelection();
+                build.cpu = rs.getString("cpu");
+                build.motherboard = rs.getString("motherboard");
+                build.gpu = rs.getString("gpu");
+                build.ram = rs.getString("ram");
+                build.storage = rs.getString("storage");
+                return build;
+            }
+        } catch (SQLException e) {
+            System.err.println("getBuildById failed: " + e.getMessage());
+        }
         return null;
     }
 }

@@ -6,6 +6,7 @@ import org.example.pcbuilderapplication.DatabaseManager;
 public class UserService {
   private static UserService instance;
   private final DatabaseManager db;
+  private int loggedInUserId = -1;
 
   private UserService(){
     db = new DatabaseManager();
@@ -17,6 +18,12 @@ public class UserService {
     }
     return instance;
   }
+  public void setLoggedInUserId(int id) {
+    this.loggedInUserId = id;
+  }
+  public int getLoggedInUserId() {
+    return loggedInUserId;
+  }
 
   public SignupResult register(String user, String pass){
     if(user == null || user.isBlank()) return SignupResult.INVALID_USER;
@@ -25,6 +32,7 @@ public class UserService {
     if(db.userExists(user, pass)) return SignupResult.USERNAME_TAKEN;
 
     db.insertUser(user, pass);
+    setLoggedInUserId(db.getUserId(user, pass));
     return SignupResult.SUCCESS;
   }
 
