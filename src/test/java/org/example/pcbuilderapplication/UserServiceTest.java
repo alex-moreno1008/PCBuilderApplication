@@ -34,6 +34,28 @@ public class UserServiceTest {
     assertEquals(UserService.SignupResult.INVALID_USER, result, "Null username should be returned: INVALID_USER");
   }
 
+  @Test
+  void shortPassword_ReturnsWeak(){
+    String uniqueID = "test_user_" + System.currentTimeMillis();
+    UserService.SignupResult result = userService.register(uniqueID, "abc");
+    assertEquals(UserService.SignupResult.WEAK_PASS, result, "Password under 6 characters should return: WEAK_PASS");
+  }
+
+  @Test
+  void exactlyMinPass_ReturnsTrue(){
+    String uniqueID = "test_user_" + System.currentTimeMillis();
+    UserService.SignupResult result = userService.register(uniqueID, "abc123");
+    assertEquals(UserService.SignupResult.SUCCESS, result, "Password of exactly 6 characters should be accepted");
+  }
+
+  @Test
+  void nullPass_Weak(){
+    String uniqueID = "test_user_" + System.currentTimeMillis();
+    UserService.SignupResult result = userService.register(uniqueID, null);
+    assertEquals(UserService.SignupResult.WEAK_PASS, result, "Null password should be returned: WEAK_PASS");
+  }
+
+
 
 
 
