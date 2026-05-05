@@ -55,6 +55,19 @@ public class UserServiceTest {
     assertEquals(UserService.SignupResult.WEAK_PASS, result, "Null password should be returned: WEAK_PASS");
   }
 
+  @Test
+  void accountExists_NewUser_False(){
+    assertFalse(userService.accountExists("brand_new_user", "password123") ,"New user should not exist in DB");
+  }
+
+  @Test
+  void testAccountExists_AfterRegister_ReturnsTrue() {
+    String uniqueUser = "test_user_" + System.currentTimeMillis();
+    userService.register(uniqueUser, "password123");
+    assertTrue(userService.accountExists(uniqueUser, "password123"),
+        "User should exist after registration");
+  }
+
 
 
 
