@@ -56,7 +56,7 @@ public class SignupController {
         SceneManager.getInstance().navigateTo(SceneType.HOME);
         showNotifToast("You successfully created an account!");
       }
-      case USERNAME_TAKEN -> setFeedback("That username is already takem.", true);
+      case USERNAME_TAKEN -> setFeedback("That username is already taken.", true);
       case INVALID_USER -> setFeedback("Please enter a valid username.", true);
       case WEAK_PASS -> setFeedback("Password must be at least 6 characters.", true);
       case DATABASE_ERROR -> setFeedback("Something went wrong. Please retry.", true);
