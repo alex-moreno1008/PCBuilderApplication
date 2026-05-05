@@ -40,7 +40,7 @@ public class SignupController {
     String confirm = confirmPassField.getText();
 
     if (!pass.equals(confirm)) {
-      setFeedback("Passwords do not match.", true);
+      setFeedback("Passwords do not match. Retry", true);
       return;
     }
 
