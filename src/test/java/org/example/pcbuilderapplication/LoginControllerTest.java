@@ -13,7 +13,7 @@ public class LoginControllerTest {
     @Test
     void allSceneTypesShouldBeDefined() {
         SceneType[] types = SceneType.values();
-        assertEquals(5, types.length);
+        assertEquals(6, types.length);
     }
 
     @Test
