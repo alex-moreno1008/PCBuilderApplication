@@ -233,4 +233,54 @@ public class DatabaseManager {
 
         return null;
     }
+
+    public void saveBuild(int userId, String buildName, String cpu, String motherboard,
+                          String gpu, String ram, String storage, double total) {
+        String sql = "INSERT INTO saved_builds (user_id, build_name, cpu, motherboard, gpu, ram, storage, total_price) VALUES (?,?,?,?,?,?,?,?)";
+        try (PreparedStatement p = connection.prepareStatement(sql)) {
+            p.setInt(1, userId);
+            p.setString(2, buildName);
+            p.setString(3, cpu);
+            p.setString(4, motherboard);
+            p.setString(5, gpu);
+            p.setString(6, ram);
+            p.setString(7, storage);
+            p.setDouble(8, total);
+            p.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("saveBuild failed: " + e.getMessage());
+        }
+    }
+
+    public List<String> getSavedBuildSummaries(int userId) {
+        List<String> results = new ArrayList<>();
+        String sql = "SELECT build_name, cpu, gpu, total_price FROM saved_builds WHERE user_id = ?";
+        try (PreparedStatement p = connection.prepareStatement(sql)) {
+            p.setInt(1, userId);
+            ResultSet rs = p.executeQuery();
+            while (rs.next()) {
+                results.add(String.format("[%s] CPU: %s | GPU: %s | $%.2f",
+                        rs.getString("build_name"),
+                        rs.getString("cpu"),
+                        rs.getString("gpu"),
+                        rs.getDouble("total_price")));
+            }
+        } catch (SQLException e) {
+            System.err.println("getSavedBuildSummaries failed: " + e.getMessage());
+        }
+        return results;
+    }
+
+    public int getUserId(String username, String password) {
+        String sql = "SELECT id FROM users WHERE username = ? AND password = ?";
+        try (PreparedStatement p = connection.prepareStatement(sql)) {
+            p.setString(1, username);
+            p.setString(2, password);
+            ResultSet rs = p.executeQuery();
+            if (rs.next()) return rs.getInt("id");
+        } catch (SQLException e) {
+            System.err.println("getUserId failed: " + e.getMessage());
+        }
+        return -1;
+    }
 }
