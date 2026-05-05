@@ -45,18 +45,10 @@
             <VBox spacing="14" alignment="CENTER" maxWidth="320" prefWidth="320">
 
                 <Button fx:id="fetchGpuBtn"
-                  text="Fetch GPUs from Web"
-                  onAction="#fetchGpusFromApi"
-                  prefWidth="320"
-                  styleClass="login-btn"/>
-
-                <Label fx:id="apiStatusLabel" text=""/>
-
-                <Label fx:id="compatibilityLabel"
-                       text=""
-                       styleClass="warning-text"
-                       wrapText="true"
-                       maxWidth="320"/>
+                        text="Fetch GPUs from Web"
+                        onAction="#fetchGpusFromApi"
+                        prefWidth="320"
+                        styleClass="login-btn"/>
 
                 <Button text="NEXT"
                         styleClass="login-btn"
@@ -67,6 +59,14 @@
                         styleClass="login-btn"
                         onAction="#goHome"
                         prefWidth="320"/>
+
+                <Label fx:id="apiStatusLabel" text=""/>
+
+                <Label fx:id="compatibilityLabel"
+                       text=""
+                       styleClass="warning-text"
+                       wrapText="true"
+                       maxWidth="320"/>
             </VBox>
 
         </VBox>

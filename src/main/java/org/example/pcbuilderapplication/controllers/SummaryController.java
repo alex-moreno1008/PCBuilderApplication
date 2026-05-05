@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import org.example.pcbuilderapplication.DatabaseManager;
 import org.example.pcbuilderapplication.models.BuildSelection;
 import org.example.pcbuilderapplication.models.UserService;
+import javafx.scene.control.TextField;
 
 public class SummaryController {
 
@@ -16,6 +17,8 @@ public class SummaryController {
     @FXML private Label ramLabel;
     @FXML private Label storageLabel;
     @FXML private Label totalLabel;
+    @FXML private TextField budgetField;
+    @FXML private Label budgetLabel;
 
     @FXML
     public void initialize() {
@@ -73,5 +76,35 @@ public class SummaryController {
                 BuildSelection.cpu, BuildSelection.motherboard,
                 BuildSelection.gpu, BuildSelection.ram,
                 BuildSelection.storage, total);
+    }
+
+    @FXML
+    private void checkBudget() {
+        String input = budgetField.getText().trim();
+
+        try {
+            double budget = Double.parseDouble(input);
+            DatabaseManager db = new DatabaseManager();
+
+            double total = db.getPartPrice(BuildSelection.cpu)
+                    + db.getPartPrice(BuildSelection.motherboard)
+                    + db.getPartPrice(BuildSelection.gpu)
+                    + db.getPartPrice(BuildSelection.ram)
+                    + db.getPartPrice(BuildSelection.storage);
+
+            if (total > budget) {
+                double over = total - budget;
+                budgetLabel.setText(String.format("Over budget by $%.2f!", over));
+                budgetLabel.setStyle("-fx-text-fill: #e74c3c;");
+            } else {
+                double under = budget - total;
+                budgetLabel.setText(String.format("Within budget! $%.2f remaining.", under));
+                budgetLabel.setStyle("-fx-text-fill: #2ecc71;");
+            }
+
+        } catch (NumberFormatException e) {
+            budgetLabel.setText("Please enter a valid number.");
+            budgetLabel.setStyle("-fx-text-fill: #e74c3c;");
+        }
     }
 }
