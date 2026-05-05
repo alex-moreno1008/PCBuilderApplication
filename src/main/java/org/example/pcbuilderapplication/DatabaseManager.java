@@ -36,7 +36,8 @@ public class DatabaseManager {
         name TEXT NOT NULL,
         brand TEXT,
         price REAL NOT NULL,
-        socket TEXT
+        socket TEXT,
+        ram_type TEXT
     );
     """;
 
@@ -62,60 +63,60 @@ public class DatabaseManager {
             System.err.println("seedParts check failed: " + e.getMessage());
         }
 
-        String insertSql = "INSERT INTO parts (category, name, brand, price, socket) VALUES (?, ?, ?, ?, ?)";
+        String insertSql = "INSERT INTO parts (category, name, brand, price, socket, ram_type) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(insertSql)) {
 
             // CPUs
-            insertPart(pstmt, "CPU", "Ryzen 5 5600X", "AMD", 199.99, "AM4");
-            insertPart(pstmt, "CPU", "Ryzen 7 7700X", "AMD", 329.99, "AM5");
-            insertPart(pstmt, "CPU", "Ryzen 9 7900X", "AMD", 429.99, "AM5");
-            insertPart(pstmt, "CPU", "Intel i5-12400F", "Intel", 179.99, "LGA1700");
-            insertPart(pstmt, "CPU", "Intel i7-12700K", "Intel", 299.99, "LGA1700");
-            insertPart(pstmt, "CPU", "Intel i9-12900K", "Intel", 399.99, "LGA1700");
+            insertPart(pstmt, "CPU", "Ryzen 5 5600X", "AMD", 199.99, "AM4", null);
+            insertPart(pstmt, "CPU", "Ryzen 7 7700X", "AMD", 329.99, "AM5", null);
+            insertPart(pstmt, "CPU", "Ryzen 9 7900X", "AMD", 429.99, "AM5", null);
+            insertPart(pstmt, "CPU", "Intel i5-12400F", "Intel", 179.99, "LGA1700", null);
+            insertPart(pstmt, "CPU", "Intel i7-12700K", "Intel", 299.99, "LGA1700", null);
+            insertPart(pstmt, "CPU", "Intel i9-12900K", "Intel", 399.99, "LGA1700", null);
 
-            // Motherboards
-            insertPart(pstmt, "Motherboard", "MSI B550", "MSI", 149.99, "AM4");
-            insertPart(pstmt, "Motherboard", "ASUS X570", "ASUS", 219.99, "AM4");
-            insertPart(pstmt, "Motherboard", "ASUS X670", "ASUS", 249.99, "AM5");
-            insertPart(pstmt, "Motherboard", "MSI B650", "MSI", 189.99, "AM5");
-            insertPart(pstmt, "Motherboard", "Gigabyte B660", "Gigabyte", 159.99, "LGA1700");
-            insertPart(pstmt, "Motherboard", "ASUS Z790", "ASUS", 279.99, "LGA1700");
+            // Motherboards (ADD RAM TYPE HERE)
+            insertPart(pstmt, "Motherboard", "MSI B550", "MSI", 149.99, "AM4", "DDR4");
+            insertPart(pstmt, "Motherboard", "ASUS X570", "ASUS", 219.99, "AM4", "DDR4");
+            insertPart(pstmt, "Motherboard", "ASUS X670", "ASUS", 249.99, "AM5", "DDR5");
+            insertPart(pstmt, "Motherboard", "MSI B650", "MSI", 189.99, "AM5", "DDR5");
+            insertPart(pstmt, "Motherboard", "Gigabyte B660", "Gigabyte", 159.99, "LGA1700", "DDR4");
+            insertPart(pstmt, "Motherboard", "ASUS Z790", "ASUS", 279.99, "LGA1700", "DDR5");
 
             // GPUs
-            insertPart(pstmt, "GPU", "RTX 4060", "NVIDIA", 299.99, null);
-            insertPart(pstmt, "GPU", "RTX 4070", "NVIDIA", 549.99, null);
-            insertPart(pstmt, "GPU", "RTX 4080", "NVIDIA", 1199.99, null);
-            insertPart(pstmt, "GPU", "RX 7600", "AMD", 269.99, null);
-            insertPart(pstmt, "GPU", "RX 7700 XT", "AMD", 399.99, null);
-            insertPart(pstmt, "GPU", "RX 7800 XT", "AMD", 499.99, null);
+            insertPart(pstmt, "GPU", "RTX 4060", "NVIDIA", 299.99, null, null);
+            insertPart(pstmt, "GPU", "RTX 4070", "NVIDIA", 549.99, null, null);
+            insertPart(pstmt, "GPU", "RTX 4080", "NVIDIA", 1199.99, null, null);
+            insertPart(pstmt, "GPU", "RX 7600", "AMD", 269.99, null, null);
+            insertPart(pstmt, "GPU", "RX 7700 XT", "AMD", 399.99, null, null);
+            insertPart(pstmt, "GPU", "RX 7800 XT", "AMD", 499.99, null, null);
 
             // RAM
-            insertPart(pstmt, "RAM", "16GB DDR4", "Corsair", 59.99, null);
-            insertPart(pstmt, "RAM", "32GB DDR4", "G.Skill", 109.99, null);
-            insertPart(pstmt, "RAM", "16GB DDR5", "Corsair", 89.99, null);
-            insertPart(pstmt, "RAM", "32GB DDR5", "G.Skill", 149.99, null);
-            insertPart(pstmt, "RAM", "64GB DDR5", "Corsair", 249.99, null);
+            insertPart(pstmt, "RAM", "16GB DDR4", "Corsair", 59.99, null, "DDR4");
+            insertPart(pstmt, "RAM", "32GB DDR4", "G.Skill", 109.99, null, "DDR4");
+            insertPart(pstmt, "RAM", "16GB DDR5", "Corsair", 89.99, null, "DDR5");
+            insertPart(pstmt, "RAM", "32GB DDR5", "G.Skill", 149.99, null, "DDR5");
+            insertPart(pstmt, "RAM", "64GB DDR5", "Corsair", 249.99, null, "DDR5");
 
             // Storage
-            insertPart(pstmt, "Storage", "500GB SSD", "Samsung", 49.99, null);
-            insertPart(pstmt, "Storage", "1TB SSD", "Samsung", 89.99, null);
-            insertPart(pstmt, "Storage", "2TB SSD", "Crucial", 149.99, null);
-            insertPart(pstmt, "Storage", "1TB NVMe", "WD", 109.99, null);
-            insertPart(pstmt, "Storage", "2TB NVMe", "Samsung", 179.99, null);
-
+            insertPart(pstmt, "Storage", "500GB SSD", "Samsung", 49.99, null, null);
+            insertPart(pstmt, "Storage", "1TB SSD", "Samsung", 89.99, null, null);
+            insertPart(pstmt, "Storage", "2TB SSD", "Crucial", 149.99, null, null);
+            insertPart(pstmt, "Storage", "1TB NVMe", "WD", 109.99, null, null);
+            insertPart(pstmt, "Storage", "2TB NVMe", "Samsung", 179.99, null, null);
         } catch (SQLException e) {
             System.err.println("seedParts failed: " + e.getMessage());
         }
     }
 
     private void insertPart(PreparedStatement pstmt, String category, String name,
-                            String brand, double price, String socket) throws SQLException {
+                            String brand, double price, String socket, String ramType) throws SQLException {
         pstmt.setString(1, category);
         pstmt.setString(2, name);
         pstmt.setString(3, brand);
         pstmt.setDouble(4, price);
         pstmt.setString(5, socket);
+        pstmt.setString(6, ramType);
         pstmt.executeUpdate();
     }
 
@@ -181,5 +182,39 @@ public class DatabaseManager {
         }
 
         return false;
+    }
+
+    public String getSocketByPartName(String partName) {
+        String sql = "SELECT socket FROM parts WHERE name = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, partName);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("socket");
+            }
+        } catch (SQLException e) {
+            System.err.println("getSocketByPartName failed: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    public String getRamTypeByPartName(String partName) {
+        String sql = "SELECT ram_type FROM parts WHERE name = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, partName);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("ram_type");
+            }
+        } catch (SQLException e) {
+            System.err.println("getRamTypeByPartName failed: " + e.getMessage());
+        }
+
+        return null;
     }
 }

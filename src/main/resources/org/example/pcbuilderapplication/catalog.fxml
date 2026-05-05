@@ -52,6 +52,12 @@
 
                 <Label fx:id="apiStatusLabel" text=""/>
 
+                <Label fx:id="compatibilityLabel"
+                       text=""
+                       styleClass="warning-text"
+                       wrapText="true"
+                       maxWidth="320"/>
+
                 <Button text="NEXT"
                         styleClass="login-btn"
                         onAction="#goToSummary"
