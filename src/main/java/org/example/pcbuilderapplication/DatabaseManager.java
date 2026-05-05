@@ -304,13 +304,12 @@ public class DatabaseManager {
             p.setInt(1, buildId);
             ResultSet rs = p.executeQuery();
             if (rs.next()) {
-                BuildSelection build = new BuildSelection();
-                build.cpu = rs.getString("cpu");
-                build.motherboard = rs.getString("motherboard");
-                build.gpu = rs.getString("gpu");
-                build.ram = rs.getString("ram");
-                build.storage = rs.getString("storage");
-                return build;
+                BuildSelection.cpu = rs.getString("cpu");
+                BuildSelection.motherboard = rs.getString("motherboard");
+                BuildSelection.gpu = rs.getString("gpu");
+                BuildSelection.ram = rs.getString("ram");
+                BuildSelection.storage = rs.getString("storage");
+                return new BuildSelection();
             }
         } catch (SQLException e) {
             System.err.println("getBuildById failed: " + e.getMessage());
