@@ -9,6 +9,7 @@ import org.example.pcbuilderapplication.DatabaseManager;
 import org.example.pcbuilderapplication.SceneManager;
 import org.example.pcbuilderapplication.SceneType;
 import org.example.pcbuilderapplication.models.BuildSelection;
+import org.example.pcbuilderapplication.CompatibilityChecker;
 
 import javafx.scene.control.Label;
 import java.net.URI;
@@ -37,41 +38,40 @@ public class CatalogController {
 
         String selectedCpu = cpuBox.getValue();
         String selectedMotherboard = motherboardBox.getValue();
+        String selectedRam = ramBox.getValue();
 
         if (selectedCpu == null || selectedMotherboard == null) {
             compatibilityLabel.setText("Please select a CPU and motherboard.");
             return;
         }
 
-        String cpuSocket = db.getSocketByPartName(selectedCpu);
-        String motherboardSocket = db.getSocketByPartName(selectedMotherboard);
-
-        if (cpuSocket == null || motherboardSocket == null || !cpuSocket.equals(motherboardSocket)) {
-            compatibilityLabel.setText("CPU and motherboard are not compatible.");
+        if (selectedRam == null) {
+            compatibilityLabel.setText("Please select RAM.");
             return;
         }
 
-        String selectedRam = ramBox.getValue();
+        String cpuSocket = db.getSocketByPartName(selectedCpu);
+        String motherboardSocket = db.getSocketByPartName(selectedMotherboard);
 
-        if (selectedRam == null) {
-            compatibilityLabel.setText("Please select RAM.");
+        if (!CompatibilityChecker.socketsMatch(cpuSocket, motherboardSocket)) {
+            compatibilityLabel.setText("CPU and motherboard are not compatible.");
             return;
         }
 
         String ramType = db.getRamTypeByPartName(selectedRam);
         String motherboardRamType = db.getRamTypeByPartName(selectedMotherboard);
 
-        if (ramType == null || motherboardRamType == null || !ramType.equals(motherboardRamType)) {
+        if (!CompatibilityChecker.ramTypesMatch(ramType, motherboardRamType)) {
             compatibilityLabel.setText("RAM is not compatible with motherboard.");
             return;
         }
 
         compatibilityLabel.setText("");
 
-        BuildSelection.cpu = cpuBox.getValue();
-        BuildSelection.motherboard = motherboardBox.getValue();
+        BuildSelection.cpu = selectedCpu;
+        BuildSelection.motherboard = selectedMotherboard;
         BuildSelection.gpu = gpuBox.getValue();
-        BuildSelection.ram = ramBox.getValue();
+        BuildSelection.ram = selectedRam;
         BuildSelection.storage = storageBox.getValue();
 
         SceneManager.getInstance().navigateTo(SceneType.SUMMARY);
