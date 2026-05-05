@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import org.example.pcbuilderapplication.DatabaseManager;
 import org.example.pcbuilderapplication.SceneManager;
 import org.example.pcbuilderapplication.SceneType;
+import org.example.pcbuilderapplication.models.UserService;
 
 public class LoginController {
 
@@ -26,6 +27,7 @@ public class LoginController {
 
         DatabaseManager db = new DatabaseManager();
         if(db.userExists(user, pass)) {
+            UserService.getInstance().setLoggedInUserId(db.getUserId(user, pass));
             SceneManager.getInstance().navigateTo(SceneType.HOME);
         }else{
             feedbackLabel.setText("Invalid username or password");

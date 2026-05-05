@@ -6,6 +6,7 @@ import org.example.pcbuilderapplication.SceneType;
 import javafx.scene.control.Label;
 import org.example.pcbuilderapplication.DatabaseManager;
 import org.example.pcbuilderapplication.models.BuildSelection;
+import org.example.pcbuilderapplication.models.UserService;
 
 public class SummaryController {
 
@@ -52,5 +53,25 @@ public class SummaryController {
     @FXML
     private void goHome() {
         SceneManager.getInstance().navigateTo(SceneType.HOME);
+    }
+
+    @FXML
+    private void saveBuild() {
+        DatabaseManager db = new DatabaseManager();
+        int userId = UserService.getInstance().getLoggedInUserId();
+
+        double cpuPrice     = db.getPartPrice(BuildSelection.cpu);
+        double mbPrice      = db.getPartPrice(BuildSelection.motherboard);
+        double gpuPrice     = db.getPartPrice(BuildSelection.gpu);
+        double ramPrice     = db.getPartPrice(BuildSelection.ram);
+        double storagePrice = db.getPartPrice(BuildSelection.storage);
+        double total        = cpuPrice + mbPrice + gpuPrice + ramPrice + storagePrice;
+
+        String buildName = "Build " + System.currentTimeMillis();
+
+        db.saveBuild(userId, buildName,
+                BuildSelection.cpu, BuildSelection.motherboard,
+                BuildSelection.gpu, BuildSelection.ram,
+                BuildSelection.storage, total);
     }
 }
