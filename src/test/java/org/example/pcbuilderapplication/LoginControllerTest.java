@@ -26,4 +26,14 @@ public class LoginControllerTest {
         boolean exists = db.userExists("fake_user_xyz", "wrongpassword");
         assertFalse(exists, "Non-existent user should not be found in DB");
     }
+
+    @Test
+    void login_afterRegistration_userExistsInDatabase() {
+        String uniqueUser = "login_test_" + System.currentTimeMillis();
+        UserService.getInstance().register(uniqueUser, "password123");
+
+        DatabaseManager db = new DatabaseManager();
+        assertTrue(db.userExists(uniqueUser, "password123"),
+                "User should exist in DB after registration");
+    }
 }
