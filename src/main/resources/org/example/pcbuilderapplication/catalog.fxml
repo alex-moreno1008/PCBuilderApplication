@@ -50,6 +50,14 @@
                         prefWidth="320"
                         styleClass="login-btn"/>
 
+                <HBox spacing="10" alignment="CENTER_LEFT" prefWidth="320">
+                    <Label text="BUDGET" styleClass="field-label"/>
+                    <TextField fx:id="budgetField"
+                               promptText="Enter your budget ($)"
+                               styleClass="input-field"
+                               HBox.hgrow="ALWAYS"/>
+                </HBox>
+
                 <Button text="NEXT"
                         styleClass="login-btn"
                         onAction="#goToSummary"

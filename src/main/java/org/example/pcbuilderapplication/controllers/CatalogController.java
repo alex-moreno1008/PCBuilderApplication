@@ -12,6 +12,8 @@ import org.example.pcbuilderapplication.models.BuildSelection;
 import org.example.pcbuilderapplication.CompatibilityChecker;
 
 import javafx.scene.control.Label;
+
+import javafx.scene.control.TextField;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -31,6 +33,7 @@ public class CatalogController {
     @FXML private Button fetchGpuBtn;
     @FXML private Label apiStatusLabel;
     @FXML private Label compatibilityLabel;
+    @FXML private TextField budgetField;
 
     @FXML
     private void goToSummary() {
@@ -73,6 +76,13 @@ public class CatalogController {
         BuildSelection.gpu = gpuBox.getValue();
         BuildSelection.ram = selectedRam;
         BuildSelection.storage = storageBox.getValue();
+
+        String budgetInput = budgetField.getText().trim();
+        try {
+            BuildSelection.budget = Double.parseDouble(budgetInput);
+        } catch (NumberFormatException e) {
+            BuildSelection.budget = 0.0;
+        }
 
         SceneManager.getInstance().navigateTo(SceneType.SUMMARY);
     }
