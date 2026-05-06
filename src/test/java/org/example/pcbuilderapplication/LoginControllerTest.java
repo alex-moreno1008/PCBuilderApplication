@@ -36,4 +36,14 @@ public class LoginControllerTest {
         assertTrue(db.userExists(uniqueUser, "password123"),
                 "User should exist in DB after registration");
     }
+
+    @Test
+    void login_withWrongPassword_userShouldNotExist() {
+        String uniqueUser = "login_test_" + System.currentTimeMillis();
+        UserService.getInstance().register(uniqueUser, "correctPassword");
+
+        DatabaseManager db = new DatabaseManager();
+        assertFalse(db.userExists(uniqueUser, "wrongPassword"),
+                "User should not be found with incorrect password");
+    }
 }
