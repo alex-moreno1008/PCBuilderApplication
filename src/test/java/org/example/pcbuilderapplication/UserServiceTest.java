@@ -67,12 +67,6 @@ public class UserServiceTest {
     assertTrue(userService.accountExists(uniqueUser, "password123"),
         "User should exist after registration");
   }
-
-
-
-
-
-
 }
 
 

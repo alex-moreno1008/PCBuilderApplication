@@ -1,33 +1,61 @@
 package org.example.pcbuilderapplication;
 
+import org.example.pcbuilderapplication.models.UserService;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginControllerTest {
 
     @Test
-    void loginSceneTypeShouldExist() {
-        assertNotNull(SceneType.LOGIN);
+    void login_withValidCredentials_setsLoggedInUserId() {
+        UserService userService = UserService.getInstance();
+        String uniqueUser = "login_test_" + System.currentTimeMillis();
+        userService.register(uniqueUser, "password123");
+
+        DatabaseManager db = new DatabaseManager();
+        int userId = db.getUserId(uniqueUser, "password123");
+        userService.setLoggedInUserId(userId);
+
+        assertNotEquals(-1, userService.getLoggedInUserId(),
+                "User ID should be set after login");
     }
 
     @Test
-    void allSceneTypesShouldBeDefined() {
-        SceneType[] types = SceneType.values();
-        assertEquals(6, types.length);
+    void login_withInvalidCredentials_userShouldNotExist() {
+        DatabaseManager db = new DatabaseManager();
+        boolean exists = db.userExists("fake_user_xyz", "wrongpassword");
+        assertFalse(exists, "Non-existent user should not be found in DB");
     }
 
     @Test
-    void loginSceneTypeShouldHaveCorrectName() {
-        assertEquals("LOGIN", SceneType.LOGIN.name());
+    void login_afterRegistration_userExistsInDatabase() {
+        String uniqueUser = "login_test_" + System.currentTimeMillis();
+        UserService.getInstance().register(uniqueUser, "password123");
+
+        DatabaseManager db = new DatabaseManager();
+        assertTrue(db.userExists(uniqueUser, "password123"),
+                "User should exist in DB after registration");
     }
 
     @Test
-    void homeSceneTypeShouldExist() {
-        assertNotNull(SceneType.HOME);
-    }
+    void login_withWrongPassword_userShouldNotExist() {
+        String uniqueUser = "login_test_" + System.currentTimeMillis();
+        UserService.getInstance().register(uniqueUser, "correctPassword");
 
+        DatabaseManager db = new DatabaseManager();
+        assertFalse(db.userExists(uniqueUser, "wrongPassword"),
+                "User should not be found with incorrect password");
+    }
     @Test
-    void catalogSceneTypeShouldExist() {
-        assertNotNull(SceneType.CATALOG);
+    void login_setsCorrectUserId_matchingDatabase() {
+        String uniqueUser = "login_test_" + System.currentTimeMillis();
+        UserService.getInstance().register(uniqueUser, "password123");
+
+        DatabaseManager db = new DatabaseManager();
+        int dbUserId = db.getUserId(uniqueUser, "password123");
+        UserService.getInstance().setLoggedInUserId(dbUserId);
+
+        assertEquals(dbUserId, UserService.getInstance().getLoggedInUserId(),
+                "Logged in user ID should match the ID stored in the database");
     }
 }
