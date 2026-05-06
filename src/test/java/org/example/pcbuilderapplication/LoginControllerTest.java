@@ -20,4 +20,10 @@ public class LoginControllerTest {
                 "User ID should be set after login");
     }
 
+    @Test
+    void login_withInvalidCredentials_userShouldNotExist() {
+        DatabaseManager db = new DatabaseManager();
+        boolean exists = db.userExists("fake_user_xyz", "wrongpassword");
+        assertFalse(exists, "Non-existent user should not be found in DB");
+    }
 }
