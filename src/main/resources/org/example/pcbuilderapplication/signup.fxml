@@ -17,12 +17,8 @@
   <VBox styleClass="login-card" alignment="CENTER" spacing="0">
 
 
-    <HBox styleClass="brand-strip" alignment="CENTER_LEFT" spacing="10">
-      <Pane styleClass="cpu-icon"/>
-      <Label text="PC BUILDER" styleClass="brand-label"/>
-      <Region HBox.hgrow="ALWAYS"/>
-      <Label text="v1.0" styleClass="version-label"/>
-    </HBox>
+    <fx:include source="header.fxml"/>
+
 
 
     <VBox styleClass="card-content" alignment="CENTER" spacing="24">

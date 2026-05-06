@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      styleClass="brand-strip"
+      alignment="CENTER_LEFT"
+      spacing="10">
+    <Pane styleClass="cpu-icon"/>
+    <Label text="PC BUILDER" styleClass="brand-label"/>
+    <Region HBox.hgrow="ALWAYS"/>
+    <Label text="v1.0" styleClass="version-label"/>
+</HBox>
