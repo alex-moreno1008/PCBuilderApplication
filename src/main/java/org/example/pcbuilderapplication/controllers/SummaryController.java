@@ -38,6 +38,18 @@ public class SummaryController {
 
         double total = cpuPrice + motherboardPrice + gpuPrice + ramPrice + storagePrice;
         totalLabel.setText(String.format("Total: $%.2f", total));
+
+        if (BuildSelection.budget > 0) {
+            if (total > BuildSelection.budget) {
+                double over = total - BuildSelection.budget;
+                budgetLabel.setText(String.format("Over budget by $%.2f!", over));
+                budgetLabel.setStyle("-fx-text-fill: #e74c3c;");
+            } else {
+                double under = BuildSelection.budget - total;
+                budgetLabel.setText(String.format("Within budget! $%.2f remaining.", under));
+                budgetLabel.setStyle("-fx-text-fill: #2ecc71;");
+            }
+        }
     }
 
     private String format(String label, String name, double price) {
@@ -78,33 +90,5 @@ public class SummaryController {
                 BuildSelection.storage, total);
     }
 
-    @FXML
-    private void checkBudget() {
-        String input = budgetField.getText().trim();
 
-        try {
-            double budget = Double.parseDouble(input);
-            DatabaseManager db = new DatabaseManager();
-
-            double total = db.getPartPrice(BuildSelection.cpu)
-                    + db.getPartPrice(BuildSelection.motherboard)
-                    + db.getPartPrice(BuildSelection.gpu)
-                    + db.getPartPrice(BuildSelection.ram)
-                    + db.getPartPrice(BuildSelection.storage);
-
-            if (total > budget) {
-                double over = total - budget;
-                budgetLabel.setText(String.format("Over budget by $%.2f!", over));
-                budgetLabel.setStyle("-fx-text-fill: #e74c3c;");
-            } else {
-                double under = budget - total;
-                budgetLabel.setText(String.format("Within budget! $%.2f remaining.", under));
-                budgetLabel.setStyle("-fx-text-fill: #2ecc71;");
-            }
-
-        } catch (NumberFormatException e) {
-            budgetLabel.setText("Please enter a valid number.");
-            budgetLabel.setStyle("-fx-text-fill: #e74c3c;");
-        }
-    }
 }

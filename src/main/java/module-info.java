@@ -4,8 +4,9 @@ module org.example.pcbuilderapplication {
     requires java.sql;
     requires org.slf4j;
   requires java.net.http;
+    requires java.desktop;
 
-  opens org.example.pcbuilderapplication to javafx.fxml;
+    opens org.example.pcbuilderapplication to javafx.fxml;
     opens org.example.pcbuilderapplication.controllers to javafx.fxml;
     opens org.example.pcbuilderapplication.models to org.junit.jupiter.api;  // add this
 
