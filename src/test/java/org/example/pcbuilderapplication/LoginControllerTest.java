@@ -46,4 +46,16 @@ public class LoginControllerTest {
         assertFalse(db.userExists(uniqueUser, "wrongPassword"),
                 "User should not be found with incorrect password");
     }
+    @Test
+    void login_setsCorrectUserId_matchingDatabase() {
+        String uniqueUser = "login_test_" + System.currentTimeMillis();
+        UserService.getInstance().register(uniqueUser, "password123");
+
+        DatabaseManager db = new DatabaseManager();
+        int dbUserId = db.getUserId(uniqueUser, "password123");
+        UserService.getInstance().setLoggedInUserId(dbUserId);
+
+        assertEquals(dbUserId, UserService.getInstance().getLoggedInUserId(),
+                "Logged in user ID should match the ID stored in the database");
+    }
 }
