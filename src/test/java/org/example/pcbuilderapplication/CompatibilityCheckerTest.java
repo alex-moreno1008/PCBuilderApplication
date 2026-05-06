@@ -26,4 +26,16 @@ public class CompatibilityCheckerTest {
     void ramTypesMatch_shouldReturnFalse_whenDifferentType() {
         assertFalse(CompatibilityChecker.ramTypesMatch("DDR4", "DDR5"));
     }
+
+    @Test
+    void socketsMatch_shouldReturnFalse_whenSocketIsNull() {
+        String nullSocket = null;
+        assertFalse(CompatibilityChecker.socketsMatch(nullSocket, "AM4"));
+    }
+
+    @Test
+    void ramTypesMatch_shouldReturnFalse_whenRamTypeIsNull() {
+        String nullRamType = null;
+        assertFalse(CompatibilityChecker.ramTypesMatch(nullRamType, "DDR4"));
+    }
 }
