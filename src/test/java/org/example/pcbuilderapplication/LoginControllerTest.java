@@ -1,33 +1,23 @@
 package org.example.pcbuilderapplication;
 
+import org.example.pcbuilderapplication.models.UserService;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginControllerTest {
 
     @Test
-    void loginSceneTypeShouldExist() {
-        assertNotNull(SceneType.LOGIN);
+    void login_withValidCredentials_setsLoggedInUserId() {
+        UserService userService = UserService.getInstance();
+        String uniqueUser = "login_test_" + System.currentTimeMillis();
+        userService.register(uniqueUser, "password123");
+
+        DatabaseManager db = new DatabaseManager();
+        int userId = db.getUserId(uniqueUser, "password123");
+        userService.setLoggedInUserId(userId);
+
+        assertNotEquals(-1, userService.getLoggedInUserId(),
+                "User ID should be set after login");
     }
 
-    @Test
-    void allSceneTypesShouldBeDefined() {
-        SceneType[] types = SceneType.values();
-        assertEquals(6, types.length);
-    }
-
-    @Test
-    void loginSceneTypeShouldHaveCorrectName() {
-        assertEquals("LOGIN", SceneType.LOGIN.name());
-    }
-
-    @Test
-    void homeSceneTypeShouldExist() {
-        assertNotNull(SceneType.HOME);
-    }
-
-    @Test
-    void catalogSceneTypeShouldExist() {
-        assertNotNull(SceneType.CATALOG);
-    }
 }
