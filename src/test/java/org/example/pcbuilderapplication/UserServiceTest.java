@@ -1,5 +1,4 @@
 package org.example.pcbuilderapplication;
-import org.example.pcbuilderapplication.models.User;
 import org.example.pcbuilderapplication.models.UserService;
 import org.example.pcbuilderapplication.models.UserService.SignupResult;
 import org.junit.jupiter.api.BeforeEach;
